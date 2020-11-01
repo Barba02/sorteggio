@@ -1,0 +1,119 @@
+{
+  "subject": "Gestione Progetto [...]",
+  "rounds": [
+    {
+      "date": "2020-11-07",
+      "students": 5
+    },
+    {
+      "date": "2020-11-14",
+      "students": 5
+    },
+    {
+      "date": "2020-11-18",
+      "students": 6
+    },
+    {
+      "date": "2020-11-21",
+      "students": 5
+    },
+    {
+      "date": "2020-11-25",
+      "students": 5
+    }
+  ],
+  "exceptions": {
+    "lastBegs": [
+      "Brombin",
+      "Ienna",
+      "Marconcini",
+      "Molinari",
+      "Roin"
+    ],
+    "lastSubs": [
+      "Borsati",
+      "Brighenti",
+      "Caldogno",
+      "Olivieri"
+    ],
+    "studying": [
+      {
+        "date": "2020-11-05",
+        "students": [
+          "Ambroso",
+          "Barbieri",
+          "Brighenti",
+          "Martini",
+          "Ruffo",
+          "Zordan"
+        ]
+      },
+      {
+        "date": "2020-11-07",
+        "students": [
+          "Bertelli",
+          "Borsati",
+          "Echaiti",
+          "Mistura",
+          "Vallandro"
+        ]
+      },
+      {
+        "date": "2020-11-09",
+        "students": [
+          "Caldogno",
+          "De Marchi",
+          "Faccini",
+          "Molena",
+          "Ramarro"
+        ]
+      },
+      {
+        "date": "2020-11-14",
+        "students": [
+          "Bottacini",
+          "Lahmar",
+          "Lecini",
+          "Olivieri",
+          "Rizzolo"
+        ]
+      }
+    ],
+    "others": [
+      {
+        "date": "2020-11-18",
+        "students": [
+          "Borsati"
+        ]
+      }
+    ]
+  },
+  "students": [
+    "Ambroso",
+    "Barbieri",
+    "Bertelli",
+    "Borsati",
+    "Bottacini",
+    "Brighenti",
+    "Brombin",
+    "Caldogno",
+    "De Marchi",
+    "Echaiti",
+    "Faccini",
+    "Ienna",
+    "Lahmar",
+    "Lecini",
+    "Marconcini",
+    "Martini",
+    "Mistura",
+    "Molena",
+    "Molinari",
+    "Olivieri",
+    "Ramarro",
+    "Rizzolo",
+    "Roin",
+    "Ruffo",
+    "Vallandro",
+    "Zordan"
+  ]
+}

@@ -1,0 +1,7 @@
+Interrogazione di Gestione Progetto [...]
+
+[Sat 07/11] (1): Ruffo       | Echaiti     | Brighenti   | Martini     | Bottacini   | 
+[Sat 14/11] (2): Zordan      | Molinari    | Bertelli    | Faccini     | Rizzolo     | 
+[Wed 18/11] (3): Brombin     | Ienna       | Marconcini  | Olivieri    | Vallandro   | Lecini      | 
+[Sat 21/11] (4): Barbieri    | Mistura     | Ambroso     | De Marchi   | Roin        | 
+[Wed 25/11] (5): Caldogno    | Ramarro     | Borsati     | Molena      | Lahmar      | 
