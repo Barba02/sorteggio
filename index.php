@@ -1,12 +1,12 @@
 <?php
   require 'include/config.inc.php';
 
-  echo '<code>';
+  echo '<pre><code>';
 
   $file = prepare();
   
   if ($file) {
-    execute($file);
+    execute($file, true);
   }
 
-  echo '</code>';
+  echo '</code></pre>';

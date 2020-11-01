@@ -1,14 +1,12 @@
 <?php
   setlocale(LC_ALL, 'it_IT.utf8');
 
-  /** Definizioni. */
+  /** Definizione: Percorso di rules.json */
   define('RULES_PATH', realpath(__DIR__ . '/../rules.json'));
+  /** Definizione: Percorso di out/ */
   define('OUTPUT_PATH', realpath(__DIR__ . '/../out'));
 
-  /**
-   * Dati contenenti le regole per l'estrazione degli
-   * interrogati.
-   */
+  /** Regole di estrazione */
   $rules = file_get_contents(RULES_PATH);
   $rules = json_decode($rules, true);
 
@@ -24,7 +22,8 @@
 
     # Nome della materia
     $subject = $rules['subject'];
-    # Primo segmento del nome
+    # Primo segmento della materia
+    # utlizzato nella composizione del nome
     $first = strtolower(explode(' ', $subject)[0]);
 
     # Composizione del nome
@@ -35,10 +34,10 @@
   };
 
   /**
-   * Estrae casualmente una posizione nell' elenco
-   * degli studenti.
+   * Estrae casualmente uno studente
+   * dall'elenco.
    * 
-   * @return integer
+   * @return string
    */
   function randomStud() {
     # Inclusione di $rules
@@ -77,14 +76,14 @@
   /**
    * Restituisce il numero del giorno
    * nell'anno partendo da una stringa
-   * rappresentante una data
+   * rappresentante una data.
    * 
    * @param string $string
    * 
    * @return integer
    */
   function stringToDay($string) {
-    # Creazione data
+    # Istanziazione della data
     $date = date_create($string);
 
     # Verifica che la data sia
@@ -93,9 +92,16 @@
       return 0;
     }
 
-    return date_format($date, 'z');
+    # Formatta la data
+    return (int) date_format($date, 'z');
   };
 
+  /**
+   * Restituisce gli studenti che non possono
+   * essere estratti in determinati giorni.
+   * 
+   * @return mixed
+   */
   function getExcept() {
     # Inclusione di $rules
     global $rules;
@@ -103,24 +109,24 @@
     # Elenco di studenti già impegnati
     $exc = [];
 
-    # Verificare che ogni turno collida con
-    # altre interrogazioni e quali studenti
-    # non possono essere scelti
+    # Verifica se ogni turno collide con
+    # altre interrogazioni
     foreach ($rules['rounds'] as $ir => $round) {
-      # Formattazione della data in giorno dell'anno
+      # Giorno dell'anno
       $day = stringToDay($round['date']);
 
       foreach ($rules['exceptions']['studying'] as $ie => $engage) {
-        # Formattazione della data in giorno dell'anno
         $otr = stringToDay($engage['date']);
 
-        # Se è in un range [($otr - 3), ($otr + 3)]
         if ($day > $otr - 3 and $day < $otr + 3) {
           # Tutti gli studenti in elenco non possono essere estratti
+          # nella data indicata
           array_push($exc, $engage);
         }
       }
 
+      # Verifica se ogni turno collide con 
+      # altri impegni
       foreach ($rules['exceptions']['others'] as $io => $other) {
         if ($round['date'] === $other['date']) {
           array_push($exc, $other);
@@ -128,11 +134,9 @@
       }
     }
 
-    # Ordinamento ascendente
+    # Ordinamento crescente
     sort($exc);
 
-    # Restituisce l'elenco di studenti
-    # NON estraibili
     return $exc;
   }
 
@@ -142,7 +146,7 @@
    * 
    * @param resource $file
    */
-  function execute($file) {
+  function execute($file, $verbose = false) {
     # Inclusione di $rules
     global $rules;
 
@@ -152,7 +156,10 @@
     # Elenco risultato dell'estrazione
     $res = [];
 
-    echo 'Interrogazione di ' . $rules['subject'] . "<br /><br />";
+    if ($verbose) {
+      echo 'Interrogazione di ' . $rules['subject'] . "<br /><br />";
+    }
+
     fwrite($file, 'Interrogazione di ' . $rules['subject'] . "\n\n");
 
     # Estrazione per ogni turno
@@ -199,11 +206,17 @@
       }
 
       # Output
-      echo "$fmt<br />";
+      if ($verbose) {
+        echo "$fmt<br />";
+      }
+
       fwrite($file, "$fmt\n");
     }
 
     # Chiusura
     fclose($file);
-    echo "Finito.<br />";
+
+    if ($verbose) {
+      echo "Finito.<br />";
+    }
   };
